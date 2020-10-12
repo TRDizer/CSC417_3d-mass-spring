@@ -93,11 +93,16 @@ bool draw(igl::opengl::glfw::Viewer & viewer) {
             KE += T_p;
         }
         
+        std::cout << "my total KE is: " << KE << std::endl;
+        std::cout << "my gravitational total PE is: " << PE << std::endl;
+
         for(unsigned int ei = 0; ei < E.rows(); ei++) {
             V_spring_particle_particle(V_spring, (P.transpose()*q+x0).segment<3>(3*E(ei,0)), (P.transpose()*q+x0).segment<3>(3*E(ei,1)), l0(ei), k);
 
             PE += V_spring;
         }
+
+        std::cout << "my post gravitational and spring inertial total PE is: " << PE << std::endl;
         
         Visualize::add_energy(t, KE, PE);
 
