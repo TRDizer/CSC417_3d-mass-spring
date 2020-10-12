@@ -31,10 +31,10 @@ void assemble_stiffness(Eigen::SparseMatrixd &K, Eigen::Ref<const Eigen::VectorX
         d2V_spring_particle_particle_dq2(spring_i_H, q0, q1, l0(spring_i), k);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                K_entries.push_back(Eigen::Triplet<double>(q0_index + i, q0_index + j, spring_i_H(i,j)));
-                K_entries.push_back(Eigen::Triplet<double>(q0_index + i, q1_index + j, spring_i_H(i,j + 3)));
-                K_entries.push_back(Eigen::Triplet<double>(q1_index + i, q0_index + j, spring_i_H(i + 3,j)));
-                K_entries.push_back(Eigen::Triplet<double>(q1_index + i, q1_index + j, spring_i_H(i + 3,j + 3)));
+                K_entries.push_back(Eigen::Triplet<double>(q0_index + i, q0_index + j, -spring_i_H(i,j)));
+                K_entries.push_back(Eigen::Triplet<double>(q0_index + i, q1_index + j, -spring_i_H(i,j + 3)));
+                K_entries.push_back(Eigen::Triplet<double>(q1_index + i, q0_index + j, -spring_i_H(i + 3,j)));
+                K_entries.push_back(Eigen::Triplet<double>(q1_index + i, q1_index + j, -spring_i_H(i + 3,j + 3)));
             }
         }
     }
