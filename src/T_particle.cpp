@@ -4,5 +4,5 @@
 void T_particle(double &T, Eigen::Ref<const Eigen::VectorXd> qdot, double mass) {
 
     // std::cout << "my qdot:\n" << qdot << std::endl;
-    T = 1/2 * mass * qdot.dot(qdot);
+    T = 1/2. * mass * qdot.dot(qdot);
 }
